@@ -110,7 +110,7 @@ require_once ('./layouts/cabecalho.php');
 						<div class="details">
 							<div class="number">
 							<?php
-                                require_once('./repositories/DataRequest.php');
+                                require_once('./data/DataRequest.php');
                                 $request = new DataRequest;
                                 echo $request->dadosClientes('c');
                             ?>
@@ -132,7 +132,7 @@ require_once ('./layouts/cabecalho.php');
 						<div class="details">
 							<div class="number">
                             <?php
-                                require_once('./repositories/DataRequest.php');
+                                require_once('./data/DataRequest.php');
                                 $request = new DataRequest;
                                 echo $request->dadosUsuarios('c');
                             ?>
@@ -154,7 +154,7 @@ require_once ('./layouts/cabecalho.php');
 						<div class="details">
 							<div class="number">
                             <?php
-                                require_once('./repositories/DataRequest.php');
+                                require_once('./data/DataRequest.php');
                                 $request = new DataRequest;
                                 echo $request->dadosFornecedores('c');
                             ?>
@@ -191,7 +191,7 @@ require_once ('./layouts/cabecalho.php');
                 {
                     var data;
                     $.ajax({
-                        url:'./services/getData.php',
+                        url:'./operations/getData.php',
                         method:'POST',
                         data: {function: tipo},
                         dataType: 'json'

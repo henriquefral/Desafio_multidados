@@ -1,5 +1,5 @@
 <?php
-require_once('../repositories/DataRequest.php');
+require_once('../data/DataRequest.php');
 
 $function = $_POST['function'];
 

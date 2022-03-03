@@ -48,7 +48,7 @@
 				</li>
                 <script type="module">  
 
-                import { dataCadastro } from '../services/data.js';
+                import { dataCadastro } from '../operations/data.js';
                 
                 var listaCadastro = document.getElementById('listaCadastro');
             
@@ -76,7 +76,7 @@
 				</li>
                 <script type="module">  
 
-                    import { dataRelatorio } from '../services/data.js';
+                    import { dataRelatorio } from '../operations/data.js';
 
                     var listaRelatorio = document.getElementById('listaRelatorio');
 
