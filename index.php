@@ -31,7 +31,7 @@
 <!-- BEGIN HEADER -->
 <?php
 
-require_once ('./cabecalho.php');
+require_once ('./layouts/cabecalho.php');
 
 ?>
 <!-- END HEADER -->
@@ -42,7 +42,7 @@ require_once ('./cabecalho.php');
 	<!-- BEGIN SIDEBAR -->
     <?php 
 
-    require_once('./menu.php');
+    require_once('./layouts/menu.php');
  
     ?>
 	<!-- END SIDEBAR -->
@@ -110,7 +110,7 @@ require_once ('./cabecalho.php');
 						<div class="details">
 							<div class="number">
 							<?php
-                                require_once('./DataRequest.php');
+                                require_once('./repositories/DataRequest.php');
                                 $request = new DataRequest;
                                 echo $request->dadosClientes('c');
                             ?>
@@ -132,7 +132,7 @@ require_once ('./cabecalho.php');
 						<div class="details">
 							<div class="number">
                             <?php
-                                require_once('./DataRequest.php');
+                                require_once('./repositories/DataRequest.php');
                                 $request = new DataRequest;
                                 echo $request->dadosUsuarios('c');
                             ?>
@@ -154,7 +154,7 @@ require_once ('./cabecalho.php');
 						<div class="details">
 							<div class="number">
                             <?php
-                                require_once('./DataRequest.php');
+                                require_once('./repositories/DataRequest.php');
                                 $request = new DataRequest;
                                 echo $request->dadosFornecedores('c');
                             ?>
@@ -191,7 +191,7 @@ require_once ('./cabecalho.php');
                 {
                     var data;
                     $.ajax({
-                        url:'./getData.php',
+                        url:'./services/getData.php',
                         method:'POST',
                         data: {function: tipo},
                         dataType: 'json'
@@ -276,7 +276,7 @@ require_once ('./cabecalho.php');
 <!-- BEGIN FOOTER -->
 <?php
 
-require_once ('./rodape.php');
+require_once ('./layouts/rodape.php');
 
 ?>
 <!-- END FOOTER -->
