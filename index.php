@@ -119,7 +119,7 @@ require_once ('./cabecalho.php');
 								 Clientes
 							</div>
 						</div>
-						<a class="more" href="#" onclick="mudarEstilo('blue')">
+						<a class="more" href="#" onclick="mudarTabela('blue', 'Clientes')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -141,7 +141,7 @@ require_once ('./cabecalho.php');
 								Usuários
 							</div>
 						</div>
-						<a class="more" href="#" onclick="mudarEstilo('green')">
+						<a class="more" href="#" onclick="mudarTabela('green', 'Usuarios')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -163,7 +163,7 @@ require_once ('./cabecalho.php');
 								Fornecedores
 							</div>
 						</div>
-						<a class="more" href="#" onclick="mudarEstilo('purple')">
+						<a class="more" href="#" onclick="mudarTabela('purple', 'Fornecedores')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -172,19 +172,64 @@ require_once ('./cabecalho.php');
 
 
             <script> 
-                function mudarEstilo(cor)
+                function mudarTabela(cor, tipo)
                 {
-                    console.log('portlet-body ' + cor);
+
+                    mudarCor(cor);
+                    pegarDados(tipo);
+                }
+
+                function mudarCor(cor) 
+                {
                     cabecalho = document.getElementById('tabelaCabecalho');
                     corpo = document.getElementById('tabelaCorpo');
+                    cabecalho.className = 'portlet box ' + cor;
+                    corpo.className ='portlet-body ' + cor;
+                }
 
-                    cabecalho.classList.remove('portlet', 'box' , 'grey');
-                    cabecalho.classList.add('portlet', 'box' , cor);
+                function pegarDados (tipo)
+                {
+                    var data;
+                    $.ajax({
+                        url:'./getData.php',
+                        method:'POST',
+                        data: {function: tipo},
+                        dataType: 'json'
+                    }).done(function(response){
+                        data = response;
+                        preencherTabela(data);
+                    }).error(function(request,status,error){
+                        console.log(request.responseText);
+                        console.log(error);
+                    });
+                }
 
-                    corpo.classList.remove('portlet-body');
-                    corpo.classList.add('portlet-body',cor);
-                
-                    
+                function preencherTabela(data)
+                {
+                    var limit = 0;
+                    var header = document.getElementById('tabelaHead');
+                    var body = document.getElementById('tabelaBody');
+                    header.innerHTML = '';
+                    body.innerHTML = '';
+                    data.forEach(function(index, keyIndex) 
+                    {
+                        var trHeader = document.createElement("tr");
+                        var trBody = document.createElement("tr");
+                        Object.keys(index).forEach(key => {
+                            if (limit == 0) 
+                            {
+                                var tdHeader = document.createElement('th');
+                                tdHeader.textContent = key;
+                                trHeader.appendChild(tdHeader);
+                                header.appendChild(trHeader);
+                            }
+                            var tdBody = document.createElement('td');
+                            tdBody.textContent = index[key];
+                            trBody.appendChild(tdBody);
+                            body.appendChild(trBody);
+                        });        
+                        limit = 1;
+                    });
                 }
             </script>
 
@@ -212,102 +257,9 @@ require_once ('./cabecalho.php');
 						<div class="portlet-body" id='tabelaCorpo'>
 							<div class="table-responsive">
 								<table class="table table-hover">
-								<thead>
-								<tr>
-									<th>
-										#
-									</th>
-									<th>
-										Nome
-									</th>
-									<th>
-										Sobrenome
-									</th>
-									<th>
-										Usuario
-									</th>
-									<th>
-										Status
-									</th>
-								</tr>
+								<thead id='tabelaHead'>
 								</thead>
-								<tbody>
-								<tr>
-									<td>
-										1
-									</td>
-									<td>
-										Mark
-									</td>
-									<td>
-										Otto
-									</td>
-									<td>
-										makr124
-									</td>
-									<td>
-										<span class="label label-sm label-success">
-											Aprovado
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										2
-									</td>
-									<td>
-										Jacob
-									</td>
-									<td>
-										Nilson
-									</td>
-									<td>
-										jac123
-									</td>
-									<td>
-										<span class="label label-sm label-info">
-											Pendente
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										3
-									</td>
-									<td>
-										Larry
-									</td>
-									<td>
-										Cooper
-									</td>
-									<td>
-										lar
-									</td>
-									<td>
-										<span class="label label-sm label-warning">
-											Suspenso
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										4
-									</td>
-									<td>
-										Sandy
-									</td>
-									<td>
-										Lim
-									</td>
-									<td>
-										sanlim
-									</td>
-									<td>
-										<span class="label label-sm label-danger">
-											Bloqueado
-										</span>
-									</td>
-								</tr>
+								<tbody id='tabelaBody'>
 								</tbody>
 								</table>
 							</div>
