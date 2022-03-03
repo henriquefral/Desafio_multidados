@@ -21,6 +21,7 @@
 					</form>
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
+ 
 				<li class="start active ">
 					<a href="index.html">
 					<i class="fa fa-home"></i>
@@ -30,48 +31,63 @@
 					<span class="selected">
 					</span>
 					</a>
-				</li>
+				</li>  
 				<!--Cliente-->
 				<li class="">
 					<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
-					<span class="title">
+					<span class="title" id='title'>
 						Cadastro
 					</span>
 					<span class="arrow ">
 					</span>
 					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">Cliente</a>
-						</li>
-						<li>
-							<a href="#">Fornecedor</a>
-						</li>
-						<li>
-							<a href="#">Usuário</a>
-						</li>
+					<ul class="sub-menu" id="listaCadastro">
+
 					</ul>
 				</li>
+                <script type="module">  
+
+                import { dataCadastro } from './data.js';
+                
+                var listaCadastro = document.getElementById('listaCadastro');
+            
+                dataCadastro.forEach(function(options) {
+                        var li = document.createElement("li");
+                        var a = document.createElement("a");
+                        a.textContent = options;
+                        li.appendChild(a);
+                        listaCadastro.appendChild(li);
+                })            
+
+                </script>
 				<!--Relatorio-->
 				<li class="">
 					<a href="javascript:;">
 					<i class="fa fa-bar-chart-o"></i>
-					<span class="title">
+					<span class="title" id='title'>
 						Relatório
 					</span>
 					<span class="arrow ">
 					</span>
 					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="#">Cliente</a>
-						</li>
-						<li>
-							<a href="#">Faturamento</a>
-						</li>
+					<ul class="sub-menu" id='listaRelatorio'>
 					</ul>
 				</li>
+                <script type="module">  
+
+                    import { dataRelatorio } from './data.js';
+
+                    var listaRelatorio = document.getElementById('listaRelatorio');
+
+                    dataRelatorio.forEach(function(data) {
+                        var li = document.createElement("li");
+                        var a = document.createElement("a");
+                        a.textContent = data;
+                        li.appendChild(a);
+                        listaRelatorio.appendChild(li);
+                    });
+                </script>
 			</ul>
 			<!-- END SIDEBAR MENU -->
 		</div>
