@@ -174,11 +174,16 @@ require_once ('./cabecalho.php');
             <script> 
                 function mudarEstilo(cor)
                 {
+                    console.log('portlet-body ' + cor);
                     cabecalho = document.getElementById('tabelaCabecalho');
                     corpo = document.getElementById('tabelaCorpo');
 
-                    cabecalho.style.backgroundColor=cor;
-                    corpo.style.backgroundColor=cor;
+                    cabecalho.classList.remove('portlet', 'box' , 'grey');
+                    cabecalho.classList.add('portlet', 'box' , cor);
+
+                    corpo.classList.remove('portlet-body');
+                    corpo.classList.add('portlet-body',cor);
+                
                     
                 }
             </script>
