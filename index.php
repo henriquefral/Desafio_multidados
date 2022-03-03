@@ -109,13 +109,17 @@ require_once ('./cabecalho.php');
 						</div>
 						<div class="details">
 							<div class="number">
-								 1349
+							<?php
+                                require_once('./DataRequest.php');
+                                $request = new DataRequest;
+                                echo $request->dadosClientes('c');
+                            ?>
 							</div>
 							<div class="desc">
 								 Clientes
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="mudarEstilo('blue')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -127,13 +131,17 @@ require_once ('./cabecalho.php');
 						</div>
 						<div class="details">
 							<div class="number">
-								549
+                            <?php
+                                require_once('./DataRequest.php');
+                                $request = new DataRequest;
+                                echo $request->dadosUsuarios('c');
+                            ?>
 							</div>
 							<div class="desc">
 								Usuários
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="mudarEstilo('green')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
@@ -145,26 +153,46 @@ require_once ('./cabecalho.php');
 						</div>
 						<div class="details">
 							<div class="number">
-								89
+                            <?php
+                                require_once('./DataRequest.php');
+                                $request = new DataRequest;
+                                echo $request->dadosFornecedores('c');
+                            ?>
 							</div>
 							<div class="desc">
 								Fornecedores
 							</div>
 						</div>
-						<a class="more" href="#">
+						<a class="more" href="#" onclick="mudarEstilo('purple')">
 						Visualizar <i class="m-icon-swapright m-icon-white"></i>
 						</a>
 					</div>
 				</div>
 			</div>
+
+
+            <script> 
+                function mudarEstilo(cor)
+                {
+                    cabecalho = document.getElementById('tabelaCabecalho');
+                    corpo = document.getElementById('tabelaCorpo');
+
+                    cabecalho.style.backgroundColor=cor;
+                    corpo.style.backgroundColor=cor;
+                    
+                }
+            </script>
+
+
+
 			<!-- END DASHBOARD STATS -->
 			<div class="clearfix">
 			</div>
 			<!--Tabela-->
-			<div class="row">
+			<div class="row" >
 				<div class="col-md-12">
 					<!-- BEGIN SAMPLE TABLE PORTLET-->
-					<div class="portlet box grey">
+					<div class="portlet box grey" id='tabelaCabecalho'>
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-folder-open"></i>Tabela Simples
@@ -176,7 +204,7 @@ require_once ('./cabecalho.php');
 								<a href="javascript:;" class="remove"></a>
 							</div>
 						</div>
-						<div class="portlet-body">
+						<div class="portlet-body" id='tabelaCorpo'>
 							<div class="table-responsive">
 								<table class="table table-hover">
 								<thead>
