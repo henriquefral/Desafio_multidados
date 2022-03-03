@@ -10,5 +10,3 @@ $data = new DataRequest;
 $response = $data->$function();
 
 echo json_encode($response);
-
-//$data->dadosClientes();
